@@ -1,1 +1,15 @@
 
+# Ignore sensitive application configuration
+src/main/resources/application.properties
+
+# Java and Maven generated files
+target/
+*.class
+
+# IDE settings
+.idea/
+.vscode/
+
+# Environment files
+.env
+
