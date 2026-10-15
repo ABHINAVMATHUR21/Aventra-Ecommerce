@@ -1,4 +1,6 @@
 
+src/main/resources/application.properties
+
 # Ignore sensitive application configuration
 src/main/resources/application.properties
 
