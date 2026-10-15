@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventra | Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <header class="admin-header">
+        <a class="admin-brand" href="index.html">Aventra <span>Admin</span></a>
+        <div class="admin-user">
+            <span id="admin-name"></span>
+            <button class="outline-button" type="button" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <main class="admin-page">
+        <section id="access-panel" class="access-panel">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h1>Checking administrator access…</h1>
+            <p>Only an account with the ADMIN role can open this page.</p>
+        </section>
+
+        <div id="dashboard-content" hidden>
+            <div class="page-heading">
+                <div>
+                    <p class="eyebrow">STORE OVERVIEW</p>
+                    <h1>Admin Dashboard</h1>
+                    <p>Orders, inventory and products—all in one place.</p>
+                </div>
+                <button id="refresh-dashboard" class="primary-button" type="button">
+                    <i class="fa-solid fa-rotate-right"></i> Refresh
+                </button>
+            </div>
+
+            <section class="stat-grid" aria-label="Store statistics">
+                <article class="stat-card"><span class="stat-icon green"><i class="fa-solid fa-users"></i></span><p>Users</p><strong id="stat-users">—</strong></article>
+                <article class="stat-card"><span class="stat-icon blue"><i class="fa-solid fa-box"></i></span><p>Products</p><strong id="stat-products">—</strong></article>
+                <article class="stat-card"><span class="stat-icon orange"><i class="fa-solid fa-bag-shopping"></i></span><p>Total orders</p><strong id="stat-orders">—</strong></article>
+                <article class="stat-card"><span class="stat-icon purple"><i class="fa-solid fa-indian-rupee-sign"></i></span><p>Order value</p><strong id="stat-revenue">—</strong></article>
+                <article class="stat-card"><span class="stat-icon red"><i class="fa-solid fa-clock"></i></span><p>To process</p><strong id="stat-processing">—</strong></article>
+                <article class="stat-card"><span class="stat-icon yellow"><i class="fa-solid fa-triangle-exclamation"></i></span><p>Low stock (≤ 5)</p><strong id="stat-low-stock">—</strong></article>
+            </section>
+
+            <section class="admin-section">
+                <div class="section-title"><div><h2>Recent orders</h2><p>Update fulfilment status as the order moves forward.</p></div></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Order</th><th>Customer</th><th>Location</th><th>Total</th><th>Payment</th><th>Status</th><th>Placed</th></tr></thead>
+                        <tbody id="orders-table-body"><tr><td colspan="7">Loading orders…</td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="admin-section product-management">
+                <div class="section-title"><div><h2>Product management</h2><p>Add a product or update stock and prices.</p></div></div>
+                <div class="product-layout">
+                    <form id="product-form" class="product-form">
+                        <input id="product-id" type="hidden">
+                        <label>Product name<input id="product-name" required maxlength="255" placeholder="e.g. Fresh apples"></label>
+                        <label>Category<input id="product-category" required maxlength="100" placeholder="e.g. fruits"></label>
+                        <div class="form-row">
+                            <label>Price (₹)<input id="product-price" required min="0.01" step="0.01" type="number"></label>
+                            <label>Stock quantity<input id="product-quantity" required min="0" step="1" type="number"></label>
+                        </div>
+                        <label>Image URL<input id="product-image-url" required type="url" placeholder="https://…"></label>
+                        <div class="form-actions">
+                            <button id="save-product" class="primary-button" type="submit">Save product</button>
+                            <button id="clear-product" class="text-button" type="button">Clear</button>
+                        </div>
+                    </form>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th></th></tr></thead>
+                            <tbody id="products-table-body"><tr><td colspan="5">Loading products…</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
