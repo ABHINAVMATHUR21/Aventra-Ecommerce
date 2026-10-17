@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist | Aventra</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+<nav class="navbar">
+    <a href="index.html" class="logo"><h2>Aventra</h2></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Products</a></li>
+        <li><a href="orders.html">Orders</a></li>
+    </ul>
+    <div class="nav-icons">
+        <a href="profile.html" id="user-icon-link"><i class="fa-regular fa-user"></i></a>
+        <a href="wishlist.html"><i class="fa-solid fa-heart" style="color:var(--primary);"></i></a>
+        <a href="cart.html">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-count">0</span>
+        </a>
+    </div>
+</nav>
+</header>
+
+<div class="page-wrap">
+    <h1>My Wishlist</h1>
+    <div class="product-grid" id="wishlist-grid">
+        <p>Loading wishlist...</p>
+    </div>
+</div>
+
+<footer>
+    <p style="text-align:center;">© 2026 Aventra. All Rights Reserved.</p>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+// ===============================
+// wishlist.html inline script
+// ===============================
+// GET    /wishlist              -> List<WishlistItem> { id, product: {...} }
+// POST   /wishlist/add?productId=X
+// DELETE /wishlist/{wishlistItemId}
+
+if (!requireLogin()) {
+    // requireLogin redirect kar dega
+}
+
+const wishlistGrid = document.getElementById("wishlist-grid");
+
+async function loadWishlist() {
+    try {
+        const items = await apiFetch("/wishlist");
+
+        if (!items.length) {
+            wishlistGrid.innerHTML = `
+                <div class="empty-cart">
+                    <p>Aapki wishlist khaali hai.</p>
+                    <a href="product.html">Browse Products &rarr;</a>
+                </div>
+            `;
+            return;
+        }
+
+        wishlistGrid.innerHTML = items.map((item) => {
+            const product = item.product || {};
+            return `
+                <div class="product-card" data-wishlist-id="${item.id}" data-product-id="${product.id}">
+                    <img src="${getProductImage(product)}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>₹${product.price}</p>
+                    <button class="add-to-cart-btn">Add To Cart</button>
+                    <button class="remove-wishlist-btn" style="width:100%;margin-top:8px;border:none;padding:10px;background:#f2f2f2;color:#555;border-radius:10px;cursor:pointer;">
+                        <i class="fa-solid fa-trash"></i> Remove
+                    </button>
+                </div>
+            `;
+        }).join("");
+
+    } catch (error) {
+        wishlistGrid.innerHTML = "<p>Wishlist load nahi ho payi. Backend check karein.</p>";
+        console.error(error);
+    }
+}
+
+loadWishlist();
+
+wishlistGrid.addEventListener("click", async (e) => {
+    const card = e.target.closest(".product-card");
+    if (!card) return;
+
+    const productId = card.dataset.productId;
+    const wishlistId = card.dataset.wishlistId;
+
+    if (e.target.closest(".add-to-cart-btn")) {
+        await addToCartServer(productId, 1);
+    }
+
+    if (e.target.closest(".remove-wishlist-btn")) {
+        try {
+            await apiFetch(`/wishlist/${wishlistId}`, { method: "DELETE" });
+            showToast("Wishlist se remove ho gaya");
+            await loadWishlist();
+        } catch (error) {
+            showToast(error.message || "Remove nahi ho paaya");
+        }
+    }
+});
+</script>
+
+</body>
+</html>

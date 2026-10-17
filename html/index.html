@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventra | Fresh Groceries Delivered</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+<nav class="navbar">
+
+<div class="logo">
+    <h2>Aventra</h2>
+</div>
+
+<div class="search-box">
+
+<input type="text"
+placeholder="Search groceries...">
+
+<button>
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="product.html">Products</a></li>
+
+<li><a href="categories.html">Categories</a></li>
+
+<li><a href="orders.html">Orders</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+<div class="nav-icons">
+
+<a href="profile.html" id="user-icon-link">
+<i class="fa-regular fa-user"></i>
+</a>
+
+<a href="wishlist.html">
+<i class="fa-regular fa-heart"></i>
+</a>
+
+<a href="cart.html">
+<i class="fa-solid fa-cart-shopping"></i>
+<span class="cart-count">0</span>
+</a>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<span class="hero-pill"><i class="fa-solid fa-leaf"></i> Farm-fresh picks, every day</span>
+
+<h1>Fresh groceries, <em>right at your door.</em></h1>
+
+<p>
+
+Your daily essentials—fruits, vegetables, dairy and snacks—picked with care and delivered with ease.
+
+</p>
+
+<div class="hero-actions">
+    <button class="shop-btn">Shop fresh picks <i class="fa-solid fa-arrow-right"></i></button>
+    <a class="hero-text-link" href="product.html">Browse all products</a>
+</div>
+
+<div class="hero-promises">
+    <span><i class="fa-solid fa-truck-fast"></i> Quick delivery</span>
+    <span><i class="fa-solid fa-shield-heart"></i> Quality checked</span>
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img src="images/diverse-array-fruits-vegetables-dairy-grains-arranged-to-highlight-balanced-diet-including-milk-juice-cheese-fresh-322092505.webp"
+alt="Groceries">
+
+</div>
+
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="categories">
+
+<p class="section-kicker">SHOP BY AISLE</p>
+<h2>Everything you need, in one place</h2>
+
+<div class="category-grid">
+
+<a href="product.html?category=fruits" class="category-card" style="text-decoration:none;color:inherit;">
+
+<img src="images/Fresh Fruit.avif">
+
+<h3>Fresh Fruits</h3>
+
+</a>
+
+<a href="product.html?category=vegetables" class="category-card" style="text-decoration:none;color:inherit;">
+
+<img src="images/Fresh Vegetable.avif">
+
+<h3>Fresh Vegetables</h3>
+
+</a>
+
+<a href="product.html?category=dairy" class="category-card" style="text-decoration:none;color:inherit;">
+
+<img src="images/Dairy, Bread and Eggs.avif">
+
+<h3>Dairy, Bread and Eggs</h3>
+
+</a>
+
+<a href="product.html?category=meat" class="category-card" style="text-decoration:none;color:inherit;">
+
+<img src="images/Meat and Sea food.avif">
+
+<h3>Meat and Sea food</h3>
+
+</a>
+
+<a href="product.html?category=beverages" class="category-card" style="text-decoration:none;color:inherit;">
+
+<img src="images/beverages.png">
+
+<h3>Beverages</h3>
+
+</a>
+
+<a href="product.html?category=household" class="category-card" style="text-decoration:none;color:inherit;">
+
+<img src="images/household.png">
+
+<h3>Household</h3>
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURED PRODUCTS ================= -->
+
+<section class="products">
+
+<p class="section-kicker">HANDPICKED FOR YOU</p>
+<h2>Fresh favourites</h2>
+
+<div class="product-grid" id="featured-product-grid">
+
+<div class="product-card">
+
+<img src="images/Apple.avif">
+
+<h3>Fresh Apples</h3>
+
+<p>₹180 / Kg</p>
+
+<button>Add To Cart</button>
+
+</div>
+
+<div class="product-card">
+
+<img src="images/Amul MIlk.avif">
+
+<h3>Amul Milk</h3>
+
+<p>₹32</p>
+
+<button>Add To Cart</button>
+
+</div>
+
+<div class="product-card">
+
+<img src="images/Britannia Whole Wheat Bread.avif">
+
+<h3>Britannia Whole Wheat Braed</h3>
+
+<p>₹45</p>
+
+<button>Add To Cart</button>
+
+</div>
+
+<div class="product-card">
+
+<img src="images/Too Yumm American Style Cream & Onion Potato Chips.avif">
+
+<h3>Too Yumm American Style Cream & Onion Potato Chips</h3>
+
+<p>₹20</p>
+
+<button>Add To Cart</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="features">
+
+<p class="section-kicker">THE AVENTRA PROMISE</p>
+<h2>Why Choose Aventra?</h2>
+
+<div class="feature-container">
+
+<div class="feature-box">
+
+<i class="fa-solid fa-truck-fast"></i>
+
+<h3>Fast Delivery</h3>
+
+<p>Delivered within 30 minutes.</p>
+
+</div>
+
+<div class="feature-box">
+
+<i class="fa-solid fa-leaf"></i>
+
+<h3>Fresh Products</h3>
+
+<p>Farm fresh quality guaranteed.</p>
+
+</div>
+
+<div class="feature-box">
+
+<i class="fa-solid fa-credit-card"></i>
+
+<h3>Secure Payment</h3>
+
+<p>UPI, Cards and Cash on Delivery.</p>
+
+</div>
+
+<a href="contact.html" class="feature-box" style="display:block;text-decoration:none;color:inherit;cursor:pointer;">
+
+<i class="fa-solid fa-headset"></i>
+
+<h3>24×7 Support</h3>
+
+<p>Always ready to help.</p>
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+
+<section class="newsletter">
+
+<h2>Subscribe to Our Newsletter</h2>
+
+<p>
+
+Get updates on offers and discounts.
+
+</p>
+
+<input type="email"
+placeholder="Enter your email">
+
+<button>
+
+Subscribe
+
+</button>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-container">
+
+<div>
+
+<h3>Aventra</h3>
+
+<p>
+
+Fresh groceries delivered to your home.
+
+</p>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li><a href="#">Products</a></li>
+
+<li><a href="#">About</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3>Customer Care</h3>
+
+<ul>
+
+<li>FAQs</li>
+
+<li>Privacy Policy</li>
+
+<li>Terms & Conditions</li>
+
+<li>Return Policy</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3>Follow Us</h3>
+
+<i class="fab fa-facebook"></i>
+
+<i class="fab fa-instagram"></i>
+
+<i class="fab fa-x-twitter"></i>
+
+<i class="fab fa-linkedin"></i>
+
+</div>
+
+</div>
+
+<hr>
+
+<p style="text-align:center;">
+© 2026 Aventra. All Rights Reserved.
+</p>
+
+</footer>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
