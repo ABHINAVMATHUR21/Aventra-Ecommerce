@@ -1,6 +1,10 @@
 package com.aventra.service;
 
 import com.aventra.entity.Product;
+import com.aventra.repository.WishlistItemRepository;
+import com.aventra.repository.CartItemRepository;
+import com.aventra.repository.OrderItemRepository;
+import org.springframework.transaction.annotation.Transactional;
 import com.aventra.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,14 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+        @Autowired
+    private WishlistItemRepository wishlistItemRepository;
+
+    @Autowired
+    private CartItemRepository cartItemRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     // Get All Products
     public List<Product> getAllProducts() {
@@ -40,9 +52,19 @@ public class ProductService {
 
         return productRepository.save(product);
     }
-
     // Delete Product
+    @Transactional
     public void deleteProduct(Long id) {
+
+        if (orderItemRepository.existsByProduct_Id(id)) {
+            throw new RuntimeException(
+                "This product is part of existing orders and cannot be deleted. "
+                + "Set its quantity to 0 instead."
+            );
+        }
+
+        wishlistItemRepository.deleteByProduct_Id(id);
+        cartItemRepository.deleteByProduct_Id(id);
         productRepository.deleteById(id);
     }
 
