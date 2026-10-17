@@ -14,4 +14,5 @@ public interface WishlistItemRepository extends JpaRepository<WishlistItem, Long
             Long userId,
             Long productId
     );
+        void deleteByProduct_Id(Long productId);
 }
