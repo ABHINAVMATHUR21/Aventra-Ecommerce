@@ -3,7 +3,7 @@
 // Common utilities (sab pages me use hote hain) + Home page logic
 // ===============================
 
-const API_BASE = "aventra-ecommerce-production.up.railway.app";
+const API_BASE = "https://aventra-ecommerce-production.up.railway.app";
 
 // ---------- TOAST ----------
 
