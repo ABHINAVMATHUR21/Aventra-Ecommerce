@@ -17,7 +17,7 @@ import com.aventra.service.UserService;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:5500")
+@CrossOrigin(origins = {"http://localhost:5500", "https://aventra-ecommerce.vercel.app"})
 public class UserController {
 
     @Autowired
