@@ -778,3 +778,36 @@ img{ max-width:100%; }
   color:#be123c;
   transform:scale(1.12);
 }
+/* ===== Quantity selector on product cards ===== */
+.product-card .card-qty{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin:0 0 12px;
+}
+
+.product-card .card-qty-btn{
+  width:34px;
+  height:34px;
+  padding:0;
+  border-radius:50%;
+  background:#fff;
+  color:var(--primary-dark);
+  border:1px solid #cfe3d3;
+  font-size:1.1rem;
+  font-weight:700;
+  line-height:1;
+}
+
+.product-card .card-qty-btn:hover{
+  background:var(--primary);
+  color:#fff;
+  border-color:var(--primary);
+}
+
+.product-card .card-qty-value{
+  min-width:28px;
+  text-align:center;
+  font-weight:700;
+}
