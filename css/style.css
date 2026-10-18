@@ -760,3 +760,21 @@ img{ max-width:100%; }
   .qty-control button{ width:34px; height:34px; }
   .cart-summary{ max-width:none; }
 }
+/* ===== Wishlist heart button (product cards) ===== */
+.product-card .wishlist-btn{
+  width:36px;
+  height:36px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#e11d48;
+  font-size:1.05rem;
+  z-index:2;
+  transition:transform .15s;
+}
+
+.product-card .wishlist-btn:hover{
+  color:#be123c;
+  transform:scale(1.12);
+}
