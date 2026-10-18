@@ -113,12 +113,36 @@ searchInput.addEventListener("keyup", (e) => {
 // ---------- Add to cart ----------
 
 grid.addEventListener("click", (event) => {
-    if (event.target.closest(".add-to-cart-btn")) {
-        const id = event.target.closest(".add-to-cart-btn").dataset.id;
-        addToCartServer(id, 1);
+
+    // + / - button
+    const qtyBtn = event.target.closest(".card-qty-btn");
+    if (qtyBtn) {
+        const box = qtyBtn.closest(".card-qty");
+        const valueEl = box.querySelector(".card-qty-value");
+        const max = parseInt(box.dataset.max, 10) || 1;
+        let qty = parseInt(valueEl.innerText, 10) || 1;
+
+        qty = qtyBtn.dataset.action === "plus"
+            ? Math.min(qty + 1, max)
+            : Math.max(qty - 1, 1);
+
+        valueEl.innerText = qty;
         return;
     }
 
+    // Add To Cart
+    const addBtn = event.target.closest(".add-to-cart-btn");
+    if (addBtn) {
+        const card = addBtn.closest(".product-card");
+        const qtyEl = card.querySelector(".card-qty-value");
+        const qty = qtyEl ? parseInt(qtyEl.innerText, 10) : 1;
+
+        addToCartServer(addBtn.dataset.id, qty);
+        if (qtyEl) qtyEl.innerText = "1";
+        return;
+    }
+
+    // Wishlist
     if (event.target.closest(".wishlist-btn")) {
         const id = event.target.closest(".wishlist-btn").dataset.id;
         addToWishlistServer(id);
