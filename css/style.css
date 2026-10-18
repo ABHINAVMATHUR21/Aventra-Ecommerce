@@ -650,3 +650,113 @@ footer{ margin-top:62px; background:#132419; padding:47px 40px 26px; } footer h3
 @media(max-width:768px){
   .navbar{ padding:12px 18px; }.logo h2{ font-size:1.45rem; }.hero{ margin:18px 14px 7px; padding:36px 24px; border-radius:22px; }.hero h1{ font-size:2.55rem; }.hero-right img{ height:250px; }.hero-promises{ gap:10px; }.nav-icons a{ width:33px; height:33px; } section{ padding:45px 20px; }.newsletter{ margin:12px 14px 0; border-radius:18px; } .newsletter button{ margin-left:0; } .products-heading,.filter-bar{ padding-left:20px !important; padding-right:20px !important; }
 }
+/* =====================================================
+   MOBILE RESPONSIVE (add at the very end of the file)
+   ===================================================== */
+
+html{ -webkit-text-size-adjust:100%; }
+body{ overflow-x:hidden; }
+img{ max-width:100%; }
+
+/* ---------- Tablet + Phone ---------- */
+@media (max-width:768px){
+
+  /* Header: compact aur static, taki screen na gher le */
+  header{ position:static; }
+  .navbar{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px 12px;
+    padding:10px 14px;
+  }
+  .logo{ grid-column:1; grid-row:1; }
+  .nav-icons{ grid-column:2; grid-row:1; justify-content:flex-end; }
+  .search-box{
+    grid-column:1 / -1;
+    grid-row:2;
+    width:100%;
+    max-width:none;
+    order:0;
+  }
+  .nav-links{
+    grid-column:1 / -1;
+    grid-row:3;
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    gap:18px;
+    overflow-x:auto;
+    white-space:nowrap;
+    padding-bottom:2px;
+    scrollbar-width:none;
+  }
+  .nav-links::-webkit-scrollbar{ display:none; }
+
+  /* Phone pe input zoom na ho (iPhone) */
+  input, select, textarea{ font-size:16px; }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width:600px){
+
+  section{ padding:34px 14px; }
+
+  .hero{ margin:12px 10px 6px; padding:28px 18px; }
+  .hero h1{ font-size:2rem; }
+  .hero-right img{ height:200px; }
+  .hero-actions{ gap:14px; }
+
+  /* 2 columns grid */
+  .category-grid{ grid-template-columns:repeat(2,1fr); gap:12px; }
+  .category-card img{ width:76px; height:76px; }
+  .category-card h3{ font-size:.88rem; }
+
+  .product-grid{ grid-template-columns:repeat(2,1fr); gap:12px; }
+  .product-card img{ height:130px; }
+  .product-card h3{ font-size:.9rem; min-height:40px; margin:10px 0 4px; }
+  .product-card p{ font-size:.95rem; margin-bottom:10px; }
+
+  .feature-container{ grid-template-columns:repeat(2,1fr); gap:12px; }
+  .feature-box{ padding:18px 12px; }
+
+  /* Newsletter + footer */
+  .newsletter{ margin:12px 10px 0; padding:34px 16px; }
+  .newsletter input,
+  .newsletter button{ width:100%; margin:6px 0 0; }
+  footer{ padding:34px 18px 22px; }
+  .footer-container{ grid-template-columns:1fr 1fr; gap:22px; }
+}
+
+/* ---------- Cart: table ki jagah cards ---------- */
+@media (max-width:640px){
+
+  .page-wrap .cart-table,
+  .page-wrap .cart-table tbody{
+    display:block;
+    background:transparent;
+    box-shadow:none;
+    border-radius:0;
+  }
+  .page-wrap .cart-table thead{ display:none; }
+
+  .page-wrap .cart-table tr{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:10px 12px;
+    align-items:center;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    padding:14px;
+    margin-bottom:14px;
+  }
+  .page-wrap .cart-table td{ padding:0; border:0; }
+  .page-wrap .cart-table td:nth-child(1){ grid-column:1 / -1; }
+  .page-wrap .cart-table td:nth-child(2)::before{ content:"Price: "; color:#667085; }
+  .page-wrap .cart-table td:nth-child(4){ font-weight:700; }
+  .page-wrap .cart-table td:nth-child(4)::before{ content:"Total: "; color:#667085; font-weight:400; }
+  .page-wrap .cart-table td:nth-child(5){ text-align:right; }
+
+  .qty-control button{ width:34px; height:34px; }
+  .cart-summary{ max-width:none; }
+}
