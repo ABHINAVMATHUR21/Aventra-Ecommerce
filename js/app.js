@@ -195,6 +195,12 @@ async function loadFeaturedProducts() {
                 <h3>${product.name}</h3>
                 <p>₹${product.price}</p>
                 <small style="display:block;margin:-10px 0 12px;color:${inStock ? "#15803d" : "#b91c1c"};">${inStock ? `${product.quantity} in stock` : "Out of stock"}</small>
+                                ${inStock ? `
+                <div class="card-qty" data-max="${product.quantity}">
+                    <button type="button" class="card-qty-btn" data-action="minus">-</button>
+                    <span class="card-qty-value">1</span>
+                    <button type="button" class="card-qty-btn" data-action="plus">+</button>
+                </div>` : ""}
                 <button class="add-to-cart-btn" data-id="${product.id}" ${inStock ? "" : "disabled"}>${inStock ? "Add To Cart" : "Unavailable"}</button>
             </div>
         `;
@@ -211,11 +217,34 @@ async function loadFeaturedProducts() {
 if (productGrid) {
     loadFeaturedProducts();
 
-    productGrid.addEventListener("click", (event) => {
-        if (!event.target.classList.contains("add-to-cart-btn")) return;
+       productGrid.addEventListener("click", (event) => {
 
-        const id = event.target.dataset.id;
-        addToCartServer(id, 1);
+        // + / - button
+        const qtyBtn = event.target.closest(".card-qty-btn");
+        if (qtyBtn) {
+            const box = qtyBtn.closest(".card-qty");
+            const valueEl = box.querySelector(".card-qty-value");
+            const max = parseInt(box.dataset.max, 10) || 1;
+            let qty = parseInt(valueEl.innerText, 10) || 1;
+
+            qty = qtyBtn.dataset.action === "plus"
+                ? Math.min(qty + 1, max)
+                : Math.max(qty - 1, 1);
+
+            valueEl.innerText = qty;
+            return;
+        }
+
+        // Add To Cart
+        const addBtn = event.target.closest(".add-to-cart-btn");
+        if (addBtn) {
+            const card = addBtn.closest(".product-card");
+            const qtyEl = card.querySelector(".card-qty-value");
+            const qty = qtyEl ? parseInt(qtyEl.innerText, 10) : 1;
+
+            addToCartServer(addBtn.dataset.id, qty);
+            if (qtyEl) qtyEl.innerText = "1";
+        }
     });
 }
 
