@@ -30,6 +30,12 @@ function renderProducts(products) {
             <h3>${product.name}</h3>
             <p>₹${product.price}${product.unit ? " / " + product.unit : ""}</p>
             <small style="display:block;margin:-10px 0 12px;color:${inStock ? "#15803d" : "#b91c1c"};">${inStock ? `${product.quantity} in stock` : "Out of stock"}</small>
+                        ${inStock ? `
+            <div class="card-qty" data-max="${product.quantity}">
+                <button type="button" class="card-qty-btn" data-action="minus">-</button>
+                <span class="card-qty-value">1</span>
+                <button type="button" class="card-qty-btn" data-action="plus">+</button>
+            </div>` : ""}
             <button class="add-to-cart-btn" data-id="${product.id}" ${inStock ? "" : "disabled"}>${inStock ? "Add To Cart" : "Unavailable"}</button>
         </div>
     `;
