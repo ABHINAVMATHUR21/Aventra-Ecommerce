@@ -46,7 +46,6 @@ public class OrderService {
             PaymentService paymentService,
             EmailService emailService
     ) {
-    ) {
         this.customerOrderRepository = customerOrderRepository;
         this.orderItemRepository = orderItemRepository;
         this.cartItemRepository = cartItemRepository;
@@ -93,7 +92,7 @@ public class OrderService {
         if ("COD".equals(paymentMethod)) {
             emailService.sendOrderConfirmationEmail(
                     user.getEmail(), order.getId(), totalAmount);
-                    return response;
+            return response;
         }
 
         PaymentService.RazorpayCheckoutDetails checkout = paymentService.createRazorpayOrder(
@@ -129,7 +128,7 @@ public class OrderService {
         );
 
         order.setRazorpayPaymentId(request.getRazorpayPaymentId());
-               order.setPaymentStatus("PAID");
+        order.setPaymentStatus("PAID");
         order.setStatus("CONFIRMED");
         CustomerOrder savedOrder = customerOrderRepository.save(order);
         emailService.sendOrderConfirmationEmail(
