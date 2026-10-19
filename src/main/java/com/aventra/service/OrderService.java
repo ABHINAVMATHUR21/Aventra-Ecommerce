@@ -34,6 +34,7 @@ public class OrderService {
     private final AddressRepository addressRepository;
     private final CurrentUserService currentUserService;
     private final PaymentService paymentService;
+    private final EmailService emailService;
 
     public OrderService(
             CustomerOrderRepository customerOrderRepository,
@@ -42,7 +43,9 @@ public class OrderService {
             ProductRepository productRepository,
             AddressRepository addressRepository,
             CurrentUserService currentUserService,
-            PaymentService paymentService
+            PaymentService paymentService,
+            EmailService emailService
+    ) {
     ) {
         this.customerOrderRepository = customerOrderRepository;
         this.orderItemRepository = orderItemRepository;
@@ -51,6 +54,7 @@ public class OrderService {
         this.addressRepository = addressRepository;
         this.currentUserService = currentUserService;
         this.paymentService = paymentService;
+        this.emailService = emailService;
     }
 
     /**
@@ -87,7 +91,9 @@ public class OrderService {
 
         PlaceOrderResponse response = new PlaceOrderResponse(order);
         if ("COD".equals(paymentMethod)) {
-            return response;
+            emailService.sendOrderConfirmationEmail(
+                    user.getEmail(), order.getId(), totalAmount);
+                    return response;
         }
 
         PaymentService.RazorpayCheckoutDetails checkout = paymentService.createRazorpayOrder(
@@ -123,9 +129,12 @@ public class OrderService {
         );
 
         order.setRazorpayPaymentId(request.getRazorpayPaymentId());
-        order.setPaymentStatus("PAID");
+               order.setPaymentStatus("PAID");
         order.setStatus("CONFIRMED");
-        return customerOrderRepository.save(order);
+        CustomerOrder savedOrder = customerOrderRepository.save(order);
+        emailService.sendOrderConfirmationEmail(
+                user.getEmail(), savedOrder.getId(), savedOrder.getTotalAmount());
+        return savedOrder;
     }
 
     @Transactional
